@@ -5,6 +5,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Image</th>  
       <th>Title</th>
       <th>Description</th>
       <th>User ID</th>
@@ -16,6 +17,11 @@
   <tbody>
     <% @contents.each do |content| %>
       <tr>
+        <% if content.cover.attached? %>  
+          <td><%= image_tag content.cover.variant(resize_to_limit: [150, nil]) %></td>
+        <% else %>
+          <td>NO IMAGE</td>
+        <% end %>
         <td><%= content.title %></td>
         <td><%= content.description %></td>
         <td><%= content.user_id %></td>
