@@ -67,7 +67,7 @@ class ContentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def content_params
-      params.require(:content).permit(:title, :description, :price, :cover)
+      params.require(:content).permit(:title, :description, :price, :cover, :attachment)
     end
 
     def check_user
