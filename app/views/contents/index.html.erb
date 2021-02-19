@@ -1,5 +1,27 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row">
+  <% @contents.each do |content| %>
+    <div class="col-sm-4">
+      <div class="card">
+        <%= image_tag content.cover.variant(resize_to_limit: [150, nil]) %> 
+        <div class="card-body">
+            <h5 class="card-title"><%= content.title %></h5>
+            <h6 class="card-subtitle">Sold by <%= content.user.name %></h6>
+            <p class="card-text"><%= content.description %></p>
+            <p class="card-text"><%= number_to_currency(content.price) %></p>
+            <%= link_to 'View', content, class: "btn btn-primary" %>
+            <% if content.user == current_user %>
+            <br>
+            <td><%= link_to 'Edit', edit_content_path(content) %></td>
+            <td><%= link_to 'Destroy', content, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 <h1>Contents</h1>
 
 <table class="table">
@@ -36,6 +58,3 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Content', new_content_path %>

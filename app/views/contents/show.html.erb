@@ -1,21 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<%= image_tag @content.cover %>
-
-<p>
-  <strong>Title:</strong>
-  <%= @content.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @content.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @content.price %>
-</p>
+<div class="row">
+  <div class="col-6">
+    <%= image_tag @content.cover, class: "img-fluid" %>
+  </div>
+  <div class="col-6">
+    <h1><%= @content.title %></h1>
+    <h4>
+      <%= number_to_currency(@content.price) %>
+    </h4>
+    <p>
+      <strong>Sold by <%= @content.user.name %></strong>
+    </p>
+    <p>
+      <%= @content.description %>
+    </p>
+  </div>
+</div>
 
 <% if @content.user == current_user %>
   <%= link_to 'Edit', edit_content_path(@content) %> |
